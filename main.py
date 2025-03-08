@@ -13,16 +13,17 @@ mapping = dict(
     account="CHECKING",
     account_id="14099972-6",
     currency="BRL",
+    parse_fmt="%d/%m/%Y",
     date=itemgetter("Data"),
     amount=itemgetter("Valor"),
     payee=itemgetter("Detalhe"),
-    balance="1,00",
+    balance="0,00",
     ms_money=True,
 )
 
 ofx = OFX(mapping)
 
-records = read_csv("InfinitePay 01-01-2025 a 31-01-2025.csv", has_header=True)
+records = read_csv("InfinitePay 01-02-2025 a 28-02-2025.csv", has_header=True)
 
 groups = ofx.gen_groups(records)
 trxns = ofx.gen_trxns(groups)
